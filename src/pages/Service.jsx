@@ -45,7 +45,7 @@ const Service = () => {
             <h2 className="text-xl font-semibold mb-2">
               {service.serviceName}
             </h2>
-            <p className="text-gray-600 mb-1">
+            <p className="text-gray-500 mb-1">
               Provider: {service.providerName}
             </p>
             <p className="text-gray-600 mb-1">Rating: ⭐ {service.rating}</p>
