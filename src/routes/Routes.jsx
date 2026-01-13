@@ -10,6 +10,10 @@ import Signup from '../pages/Signup';
 import PrivateRoute from '../privateRoute/PrivateRoute';
 import ServiceDetails from '../pages/ServiceDetails';
 import ForgotPassword from '../pages/ForgotPassword';
+import AddService from '../pages/AddService';
+import MyServices from '../pages/MyServices';
+import UpdateService from '../pages/UpdateService';
+import MyOrders from '../pages/MyOrders';
 
 
 
@@ -49,12 +53,36 @@ export const router = createBrowserRouter([
         element: <Signup></Signup>,
       },
       {
-        
-  path: "/auth/forgot-password",
-  element: <ForgotPassword />,
-
-
-      }
+        path: "/add-services",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <AddService></AddService>,
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-services",
+        element: (
+          <PrivateRoute>
+            <MyServices></MyServices>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-orders",
+        element: <PrivateRoute>
+          <MyOrders></MyOrders>
+        </PrivateRoute>,
+      },
+      {
+        path: "/update-services/:id",
+        element: <UpdateService></UpdateService>,
+      },
+      {
+        path: "/auth/forgot-password",
+        element: <ForgotPassword />,
+      },
     ],
   },
 ]);

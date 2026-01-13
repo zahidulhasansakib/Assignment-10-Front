@@ -7,13 +7,15 @@ const Service = () => {
   const [services, setServices] = useState([]);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch(`https://backend-10-tau.vercel.app/services?category=${category}`)
       .then((res) => res.json())
       .then((data) => setServices(data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [category]);
+  console.log(category);
 
   const handleViewDetails = (id) => {
     if (!user) {
@@ -27,6 +29,21 @@ const Service = () => {
 
   return (
     <div className="min-h-screen py-10 px-4 bg-gray-50">
+      <div className="mt-10">
+        <select
+          onChange={(e) => setCategory(e.target.value)}
+          defaultValue=""
+          className="select">
+          <option value="" disabled>
+            Choose Category
+          </option>
+          <option value="">All</option>
+          <option value="pets">Pets</option>
+          <option value="food">Food</option>
+          <option value="accessories">Accessories</option>
+          <option value="care-products">Care Products</option>
+        </select>
+      </div>
       <h1 className="text-3xl font-bold text-center mb-10">
         Winter Care Services ❄🐾
       </h1>
@@ -42,17 +59,16 @@ const Service = () => {
               alt={service.serviceName}
               className="w-full h-48 object-cover rounded-xl mb-4"
             />
-            <h2 className="text-xl font-semibold mb-2">
-              {service.serviceName}
-            </h2>
-            <p className="text-gray-500 mb-1">
-              Provider: {service.providerName}
-            </p>
-            <p className="text-gray-600 mb-1">Rating: ⭐ {service.rating}</p>
+            <h2 className="text-xl font-semibold mb-2">{service.name}</h2>
+            <p className="text-gray-500 mb-1">Category: {service.category}</p>
+
+            <p className="text-gray-600 mb-1">Date: {service.date}</p>
+            <p className="text-gray-600 mb-1">Location: {service.location}</p>
             <p className="text-blue-600 font-bold mb-3">${service.price}</p>
             <button
-              onClick={() => handleViewDetails(service.serviceId)}
-              className="w-full py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold hover:scale-[1.02] transition-transform">
+              onClick={() => handleViewDetails(service._id)}
+              className="btn btn-primary w-full mt-4 rounded-xl"
+              data-aos="flip-left">
               View Details
             </button>
           </div>

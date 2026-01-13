@@ -1,16 +1,17 @@
 // src/pages/ServiceDetails.jsx
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { toast } from "react-hot-toast";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import axios from "axios";
 
 const ServiceDetails = () => {
   const { id } = useParams();
   const [service, setService] = useState(null);
-  const [bookingName, setBookingName] = useState("");
-  const [bookingEmail, setBookingEmail] = useState("");
+  const navigation = useNavigate();
+
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -18,28 +19,43 @@ const ServiceDetails = () => {
   }, []);
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch(`https://backend-10-tau.vercel.app/services/${id}`)
       .then((res) => res.json())
-      .then((data) => {
-        const found = data.find((item) => item.serviceId === parseInt(id));
-        setService(found);
-      })
+      .then((data) => setService(data)) // Directly set data, no .find()
       .catch((err) => console.error(err));
   }, [id]);
-
-  const handleBooking = (e) => {
+  const handleOrder = (e) => {
     e.preventDefault();
-    if (!user) {
-      toast.error("You must login first to book a service!");
-      return;
-    }
-    if (!bookingName || !bookingEmail) {
-      toast.error("Please fill in all fields!");
-      return;
-    }
-    toast.success(`Service booked successfully for ${bookingName}!`);
-    setBookingName("");
-    setBookingEmail("");
+    const form = e.target;
+    const productName = form.productName.value;
+    const buyerName = form.buyerName.value;
+    const buyerEmail = form.buyerEmail.value;
+    const quantity = parseInt(form.quantity.value);
+    const price = parseInt(form.price.value);
+    const address = form.address.value;
+    const phone = form.phone.value;
+    const note = form.note.value;
+    const formData = {
+      productId: id,
+      productName,
+      buyerName,
+      buyerEmail,
+      quantity,
+      price,
+      address,
+      phone,
+      note,
+      date: new Date(),
+    };
+    axios
+      .post("https://backend-10-tau.vercel.app/orders", formData)
+      .then((res) => {
+        console.log(res);
+        navigation("/my-orders");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   if (!service) return <p className="text-center mt-20">Loading...</p>;
@@ -55,53 +71,143 @@ const ServiceDetails = () => {
           className="w-full h-96 object-cover rounded-2xl mb-6"
           data-aos="zoom-in"
         />
-        <h1 className="text-3xl font-bold mb-2">{service.serviceName}</h1>
-        <p className="text-gray-600 mb-1">
-          Provider: {service.providerName} ({service.providerEmail})
-        </p>
-        <p className="text-gray-600 mb-1">Category: {service.category}</p>
-        <p className="text-gray-600 mb-1">
-          Slots Available: {service.slotsAvailable}
-        </p>
-        <p className="text-gray-600 mb-1">Rating: ⭐ {service.rating}</p>
-        <p className="text-blue-600 font-bold mb-4">${service.price}</p>
-        <p className="text-gray-700 mb-6 whitespace-pre-line">
-          {service.description}
-        </p>
 
-        <div className="border-t pt-6">
-          <h2 className="text-2xl font-semibold mb-6">Book This Service</h2>
-          <form onSubmit={handleBooking} className="space-y-5">
-            <div className="relative" data-aos="fade-right">
-              <input
-                type="text"
-                placeholder="Your Name"
-                value={bookingName}
-                onChange={(e) => setBookingName(e.target.value)}
-                className="w-full px-5 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-sm transition duration-300"
-                required
-              />
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
+        {/* Open Modal Button */}
+        <button
+          className="btn bg-gradient-to-r from-purple-600 to-pink-500 text-white border-none hover:scale-105"
+          onClick={() => document.getElementById("order_modal").showModal()}>
+          Book / Order Now
+        </button>
+
+        {/* Modal */}
+        <dialog
+          id="order_modal"
+          className="modal w-full modal-bottom sm:modal-middle">
+          <div className="modal-box max-w-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white rounded-2xl shadow-2xl border border-purple-500/20">
+            <h3 className="text-2xl font-bold text-center mb-5 text-purple-300">
+              Book This Service
+            </h3>
+
+            <form onSubmit={handleOrder} className="space-y-4 ">
+              {/* Product Name */}
+              <div>
+                <label className="text-purple-200 mb-1 block">
+                  Product Name
+                </label>
+                <input
+                  type="text"
+                  name="productName"
+                  defaultValue={service?.name}
+                  placeholder="Enter product name"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-500/40 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
+                />
+              </div>
+
+              {/* Buyer Name */}
+              <div>
+                <label className="text-purple-200 mb-1 block">Buyer Name</label>
+                <input
+                  type="text"
+                  name="buyerName"
+                  defaultValue={service?.displayName}
+                  placeholder="Enter your name"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-500/40 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
+                />
+              </div>
+
+              {/* Buyer Email */}
+              <div>
+                <label className="text-purple-200 mb-1 block">
+                  Buyer Email
+                </label>
+                <input
+                  type="email"
+                  name="buyerEmail"
+                  defaultValue={user?.email}
+                  readOnly
+                  className="w-full px-4 py-3 rounded-xl bg-black/60 text-gray-400 border border-purple-500/30"
+                />
+              </div>
+
+              {/* Quantity */}
+              <div>
+                <label className="text-purple-200 mb-1 block">Quantity</label>
+                <input
+                  type="number"
+                  required
+                  name="quantity"
+                  placeholder="Enter quantity"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-500/40 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
+                />
+              </div>
+
+              {/* Price */}
+              <div>
+                <label className="text-purple-200 mb-1 block">Price</label>
+                <input
+                  type="number"
+                  name="price"
+                  readOnly
+                  defaultValue={service?.price}
+                  placeholder="Enter price"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-500/40 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
+                />
+              </div>
+
+              {/* Address */}
+              <div>
+                <label className="text-purple-200 mb-1 block">Address</label>
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Enter your address"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-500/40 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
+                />
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label className="text-purple-200 mb-1 block">Phone</label>
+                <input
+                  type="text"
+                  required
+                  name="phone"
+                  placeholder="Enter your phone number"
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-500/40 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
+                />
+              </div>
+
+              {/* Additional Note */}
+              <div>
+                <label className="text-purple-200 mb-1 block">
+                  Additional Note
+                </label>
+                <textarea
+                  rows="3"
+                  name="note"
+                  placeholder="Write something..."
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-purple-500/40 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"></textarea>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white text-lg font-semibold shadow-xl hover:scale-105 transition-all">
+                Confirm Order
+              </button>
+            </form>
+
+            {/* Close Button */}
+            <div className="modal-action mt-2">
+              <form method="dialog">
+                <button className="btn bg-gray-700 text-white border-none hover:bg-gray-600">
+                  Close
+                </button>
+              </form>
             </div>
-
-            <div className="relative" data-aos="fade-left">
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={bookingEmail}
-                onChange={(e) => setBookingEmail(e.target.value)}
-                className="w-full px-5 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-sm transition duration-300"
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-2xl font-semibold hover:scale-[1.03] transition-transform shadow-lg"
-              data-aos="zoom-in">
-              Book Now
-            </button>
-          </form>
-        </div>
+          </div>
+        </dialog>
       </div>
     </div>
   );

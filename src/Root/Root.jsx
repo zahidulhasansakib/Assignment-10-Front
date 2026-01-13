@@ -4,7 +4,7 @@ import Footer from "./../components/Footer/Footer";
 
 const Root = () => {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {/* Full-Width Navbar */}
       <Navbar />
 

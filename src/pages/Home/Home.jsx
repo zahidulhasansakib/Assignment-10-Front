@@ -1,7 +1,7 @@
 // src/pages/Home/Home.jsx
 import { useEffect, useState, useContext } from "react";
 import HeroSlider from "../../components/Hero/HeroSlider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { toast } from "react-hot-toast";
 import AOS from "aos";
@@ -14,11 +14,12 @@ const Home = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch("https://backend-10-tau.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setServices(data))
       .catch((err) => console.error(err));
   }, []);
+  console.log(services);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -55,20 +56,20 @@ const Home = () => {
               data-aos="zoom-in"
             />
             <h3 className="text-xl font-semibold mt-3 animate__animated animate__fadeInUp">
-              {service.serviceName}
+              {service?.name}
             </h3>
-            <p className="text-sm text-gray-600 mt-1">
-              Rating: ⭐ {service.rating}
-            </p>
+            <p className="text-sm text-gray-600 mt-1">Date: {service.date}</p>
             <p className="text-lg font-bold text-blue-600 mt-1">
               ${service.price}
             </p>
-            <button
-              onClick={() => handleViewDetails(service.serviceId)}
-              className="btn btn-primary w-full mt-4 rounded-xl"
-              data-aos="flip-left">
-              View Details
-            </button>
+            <div>
+              <button
+                onClick={() => handleViewDetails(service._id)}
+                className="btn btn-primary w-full mt-4 rounded-xl"
+                data-aos="flip-left">
+                View Details
+              </button>
+            </div>
           </div>
         ))}
       </div>
