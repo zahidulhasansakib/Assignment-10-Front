@@ -8,7 +8,7 @@ import Service from '../pages/Service';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import PrivateRoute from '../privateRoute/PrivateRoute';
-import ServiceDetails from '../pages/ServiceDetails';
+import ServiceDetails from '../pages/CarDetails';
 import ForgotPassword from '../pages/ForgotPassword';
 import AddService from '../pages/AddService';
 import MyServices from '../pages/MyServices';

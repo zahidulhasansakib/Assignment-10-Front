@@ -1,44 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({
-  image,
-  tag,
-  title,
-  name,
-  option1,
-  option2,
-  link,
-  buttonText,
-}) => {
+const CarCard = ({ image, name, price, type, provider, link }) => {
   return (
     <div
-      className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100"
+      className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-100"
       data-aos="fade-up">
+      {/* Car Image */}
       <img
         src={image}
-        alt={title}
+        alt={name}
         className="h-48 w-full object-cover hover:scale-105 transition duration-300"
       />
 
+      {/* Car Info */}
       <div className="p-4">
-        <p className="text-sm text-purple-500 font-medium mb-1">{tag}</p>
-        <h3 className="text-lg font-semibold mb-1">{title}</h3>
-        <p className="text-gray-600 text-sm mb-2">{name}</p>
+        <h3 className="text-lg font-semibold mb-1">{name}</h3>
+        <p className="text-gray-600 text-sm mb-2">Type: {type}</p>
+        <p className="text-gray-600 text-sm mb-2">Provider: {provider}</p>
+        <p className="text-indigo-600 font-bold text-lg mb-3">${price} / day</p>
 
-        <div className="flex justify-between items-center text-sm text-gray-700">
-          <span>{option1}</span>
-          <span>{option2}</span>
-        </div>
-
+        {/* View Details Button */}
         <Link
           to={link}
-          className="block mt-4 w-full text-center bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition duration-200">
-          {buttonText}
+          className="block w-full text-center bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-200">
+          View Details
         </Link>
       </div>
     </div>
   );
 };
 
-export default Card;
+export default CarCard;
