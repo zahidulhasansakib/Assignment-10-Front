@@ -7,13 +7,12 @@ import { toast } from "react-hot-toast";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "animate.css";
-import { FiAward } from "react-icons/fi"; // এইটা না হলে
+import { FiAward } from "react-icons/fi"; 
 import { FaAward } from "react-icons/fa"; 
 
 
 
-// এইটা ব্যবহার করুন
-// শুধু প্রয়োজনীয় আইকনগুলো import করুন
+
 import {
   FiStar,
   FiChevronLeft,
@@ -111,7 +110,7 @@ const Home = () => {
       {/* SECTION 1: HERO */}
       <HeroSlider />
 
-      {/* SECTION 2: FEATURED CARS - এই সেকশনটা সম্পূর্ণ replace করুন */}
+      
       {/* FEATURED CARS SECTION */}
       <section className="max-w-7xl mx-auto px-4 mt-20">
         <h2 className="text-4xl font-bold text-center mb-3">Featured Cars</h2>
@@ -184,7 +183,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Rent With Us Section - ENHANCED */}
+      {/* Why Rent With Us Section  */}
       <section className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
