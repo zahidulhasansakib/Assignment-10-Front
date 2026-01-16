@@ -1,16 +1,34 @@
-# React + Vite
+# 🚗 Car Rental Service Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Live Site:** https://your-live-site-url-here
 
-Currently, two official plugins are available:
+## 📌 About This Project
+This is a modern and user-friendly car rental service website where users can browse cars, view details, and book cars online securely.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
+- 🚘 Users can browse and explore various cars with detailed information
+- 🔍 Category-wise car filtering (Sedan, SUV, Luxury, Electric, etc.)
+- 🟢 Real-time car availability system (Available / Booked status)
+- 🚫 Prevents double booking of the same car
+- 📦 Users can view their bookings on the **My Orders** page
+- 📦 Users can view their adding car on the **My Lisining** page
+- 🔐 Authentication-based access for booking cars
+- 📱 Fully responsive design for mobile, tablet, and desktop
 
-## React Compiler
+## 🛠️ Technologies Used
+- React.js
+- Tailwind CSS & DaisyUI
+- React Router
+- Axios
+- Firebase Authentication
+- Node.js
+- Express.js
+- MongoDB
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📂 Client Repository
+This repository contains the frontend (client-side) code of the Car Rental Service website.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+© 2026 Car Rental Service. All Rights Reserved.
+
