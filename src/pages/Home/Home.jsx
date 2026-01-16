@@ -271,8 +271,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* TOP RATED CARS - ENHANCED */}
-      {/* TOP RATED CARS - MODERN STYLISH */}
+      {/* TOP RATED CARS */}
+      
       <section className="mt-20 max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-5 py-2 rounded-full text-sm font-semibold mb-4">
@@ -295,12 +295,11 @@ const Home = () => {
             <div
               key={service._id}
               className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-1 shadow-lg hover:shadow-2xl transition-all duration-500">
-              {/* Gradient Border Effect */}
+              
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl"></div>
 
-              {/* Card Content */}
               <div className="relative rounded-xl bg-white dark:bg-gray-800 p-6 h-full">
-                {/* Ranking Indicator */}
+              
                 <div className="absolute -top-3 -right-3">
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg ${
@@ -337,7 +336,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                {/* Car Image (Optional - যদি image থাকে) */}
+                {/* Car Image */}
                 {service.image && (
                   <div className="mb-6 rounded-xl overflow-hidden">
                     <img
@@ -348,7 +347,7 @@ const Home = () => {
                   </div>
                 )}
 
-                {/* Features Grid */}
+               
                 <div className="grid grid-cols-2 gap-3 mb-6">
                   <div className="flex items-center gap-2 text-sm">
                     <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -411,7 +410,7 @@ const Home = () => {
       </section>
 
       {/* SECTION 5: TESTIMONIALS */}
-      {/* SECTION 5: TESTIMONIALS - UNIQUE & MODERN */}
+     
       <section className="max-w-7xl mx-auto px-4 mt-28 pb-24">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 via-pink-500 to-rose-500 text-white px-6 py-3 rounded-full text-sm font-bold mb-4 animate-pulse">
@@ -432,7 +431,7 @@ const Home = () => {
         </div>
 
         <div className="relative">
-          {/* Floating Elements Background */}
+          
           <div className="absolute -top-10 -left-10 w-24 h-24 bg-gradient-to-br from-purple-300 to-pink-300 rounded-full opacity-10 blur-xl"></div>
           <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br from-blue-300 to-cyan-300 rounded-full opacity-10 blur-xl"></div>
 
@@ -473,18 +472,17 @@ const Home = () => {
               },
             ].map((item, index) => (
               <div key={index} className="group relative">
-                {/* Floating Card Effect */}
+                
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-3xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500`}></div>
 
-                {/* Main Card */}
                 <div className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-gray-200 dark:border-gray-700 transform hover:-translate-y-4">
-                  {/* Quote Marks */}
+                 
                   <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-2xl font-serif">
                     "
                   </div>
 
-                  {/* Customer Avatar with Badge */}
+                  {/* Customer Avatar */}
                   <div className="relative mb-8">
                     <div className="relative">
                       <img
