@@ -60,7 +60,7 @@ const UpdateService = () => {
         </h2>
 
         <form onSubmit={handleUpdate} className="space-y-5">
-          {/* Product / Pet Name */}
+          {/* Product  */}
           <div>
             <label className="block mb-1 font-medium text-orange-300">
               Product / Pet Name
