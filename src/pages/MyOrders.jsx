@@ -79,7 +79,7 @@ const MyOrders = () => {
     setSelectedOrder(null);
   };
 
-  // ================= IF USER NOT LOGGED IN =================
+  //  IF USER NOT LOGGED IN 
   if (!user) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#020617] flex items-center justify-center p-4">
@@ -145,7 +145,7 @@ const MyOrders = () => {
               </div>
             </div>
 
-            {/* ================= TABLE ================= */}
+            {/* TABLE  */}
             <div className="overflow-x-auto bg-white/5 backdrop-blur-md p-4 sm:p-6 rounded-2xl shadow-xl border border-white/10">
               <table className="min-w-full text-left text-sm sm:text-base">
                 <thead>
@@ -236,7 +236,7 @@ const MyOrders = () => {
           </>
         )}
 
-        {/* ================= MODAL ================= */}
+        {/*  MODAL  */}
         <dialog ref={modalRef} className="modal">
           <div className="modal-box max-w-2xl bg-gradient-to-br from-[#020617] via-[#111827] to-[#020617] border border-purple-500/30 text-gray-100 rounded-2xl">
             <h3 className="text-2xl font-bold text-center mb-6 text-orange-400">

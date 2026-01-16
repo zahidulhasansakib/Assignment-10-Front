@@ -94,8 +94,8 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <Link to="/" className="text-xl font-bold text-purple-600">
-          🐾 Winter Pets
+        <Link to="/" className="text-3xl font-bold text-purple-600">
+          RentWheels
         </Link>
       </div>
 
@@ -103,7 +103,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
 
-      <div className="navbar-end" >
+      <div className="navbar-end">
         <label className="flex cursor-pointer gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -119,9 +119,8 @@ const Navbar = () => {
             <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
           </svg>
           <input
-          onClick={handleThemeChange}
+            onClick={handleThemeChange}
             type="checkbox"
-
             value="synthwave"
             className="toggle theme-controller"
           />
