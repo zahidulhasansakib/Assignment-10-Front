@@ -90,7 +90,7 @@ const Footer = () => {
               {[
                 { name: "Home", path: "/", icon: "🏠" },
                 { name: "Browse Cars", path: "/services", icon: "🚗" },
-                { name: "Premium Fleet", path: "/add-services", icon: "⭐" },
+                { name: "Add Car", path: "/add-services", icon: "⭐" },
                 { name: "About me", path: "/my-profile", icon: "👥" },
                 { name: "My Orders", path: "/my-orders", icon: "📞" },
               ].map((link, index) => (
@@ -123,7 +123,7 @@ const Footer = () => {
                 <div>
                   <p className="font-medium">Our Location</p>
                   <p className="text-gray-400 text-sm mt-1">
-                    123 Premium Street, Luxury City
+                    Ashkona, Dhaka
                   </p>
                 </div>
               </div>
@@ -135,7 +135,7 @@ const Footer = () => {
                 <div>
                   <p className="font-medium">Call Us</p>
                   <p className="text-gray-400 text-sm mt-1">
-                    +1 (555) 123-4567
+                    01889500928
                   </p>
                   <p className="text-gray-500 text-xs">24/7 Customer Support</p>
                 </div>
@@ -148,7 +148,7 @@ const Footer = () => {
                 <div>
                   <p className="font-medium">Email Us</p>
                   <p className="text-gray-400 text-sm mt-1">
-                    hello@driveeasy.com
+                  zahidulhasansakib11@gmail.com
                   </p>
                   <p className="text-gray-500 text-xs">
                     Response within 2 hours

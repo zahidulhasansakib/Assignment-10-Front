@@ -70,7 +70,7 @@ const Home = () => {
     fetch("https://backend-10-tau.vercel.app/booked-cars")
       .then((res) => res.json())
       .then((data) => {
-        setBookedCarIds(data || []); // Ensure it's always an array
+        setBookedCarIds(data || []); //  an array
       })
       .catch((err) => {
         console.error(err);
